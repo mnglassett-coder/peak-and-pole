@@ -1,0 +1,221 @@
+/**
+ * Small Tents Page — Peak & Pole Tent Co.
+ * Design: Structural Elegance
+ * Shows pop-up and small frame tents with published pricing and "Book Now" form
+ */
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { CheckCircle, X } from "lucide-react";
+import { toast } from "sonner";
+
+interface TentOption {
+  id: string;
+  name: string;
+  size: string;
+  price: string;
+  description: string;
+  image: string;
+}
+
+/* TODO: Replace placeholder pricing and images with real inventory before launch */
+const SMALL_TENTS: TentOption[] = [
+  {
+    id: "popup-10x10",
+    name: "Pop-Up Canopy",
+    size: "10' × 10'",
+    price: "$75",
+    description: "Perfect for small gatherings, vendor booths, or backyard shade. Quick setup, clean look.",
+    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+  },
+  {
+    id: "popup-10x20",
+    name: "Pop-Up Canopy",
+    size: "10' × 20'",
+    price: "$125",
+    description: "Double the coverage for larger parties, tailgates, or outdoor dining areas.",
+    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+  },
+  {
+    id: "frame-15x15",
+    name: "Frame Tent",
+    size: "15' × 15'",
+    price: "$200",
+    description: "A step up in structure. No center pole, clean interior space for seated dinners or displays.",
+    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+  },
+  {
+    id: "frame-20x20",
+    name: "Frame Tent",
+    size: "20' × 20'",
+    price: "$300",
+    description: "Our largest 'book instantly' option. Fits ~40 guests seated or 60 standing comfortably.",
+    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+  },
+];
+
+export default function SmallTents() {
+  const [selectedTent, setSelectedTent] = useState<TentOption | null>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // TODO: Connect to real email service / form handler before launch
+    setFormSubmitted(true);
+    toast.success("Booking request submitted! We'll confirm within 24 hours.");
+  };
+
+  return (
+    <main className="pt-20 md:pt-24">
+      {/* Page Header */}
+      <section className="bg-[#1a1a1a] text-[#F5F0E8] py-16 md:py-24 relative overflow-hidden">
+        {/* Diagonal structural accent */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#C4A882]/[0.04] origin-top-right skew-x-[-12deg]" />
+        <div className="container">
+          <div className="w-10 h-[2px] bg-[#C4A882] mb-5 origin-left rotate-[-6deg]" />
+          <span className="text-xs uppercase tracking-[0.25em] text-[#C4A882] font-semibold">Instant Booking</span>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold mt-3 mb-4">
+            Pick your size. Lock in your date.
+          </h1>
+          <p className="text-lg text-[#F5F0E8]/70 max-w-2xl leading-relaxed">
+            Simple coverage for simple events. Pricing includes delivery, setup, and teardown across our entire Northshore service area. No hidden fees, no site visit required.
+          </p>
+        </div>
+      </section>
+
+      {/* Tent Grid */}
+      <section className="py-20 md:py-28 bg-[#FDFBF7]">
+        <div className="container">
+          {/* Pole marker */}
+          <div className="w-[1px] h-8 bg-[#C4A882] mx-auto mb-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {SMALL_TENTS.map((tent) => (
+              <div
+                key={tent.id}
+                className="group bg-white border border-[#F5F0E8] overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={tent.image}
+                    alt={`${tent.name} ${tent.size}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6 md:p-8">
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <div>
+                      <h3 className="font-serif text-xl font-bold text-[#1a1a1a]">{tent.name}</h3>
+                      <span className="text-sm text-[#C4A882] font-medium uppercase tracking-wider">{tent.size}</span>
+                    </div>
+                    <span className="font-serif text-2xl font-bold text-[#1a1a1a]">{tent.price}</span>
+                  </div>
+                  <p className="text-sm text-[#2D2D2D]/70 mb-6">{tent.description}</p>
+                  <Button
+                    onClick={() => { setSelectedTent(tent); setFormSubmitted(false); }}
+                    className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3"
+                  >
+                    Book Now — {tent.price}
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 p-6 bg-[#F5F0E8] border-l-4 border-[#C4A882]">
+            <p className="text-sm text-[#2D2D2D]">
+              <strong>Need real infrastructure?</strong> Our large structure tents accommodate 50–500+ guests with full site assessment.{" "}
+              <a href="/large-tents" className="text-[#C4A882] underline hover:text-[#1a1a1a] transition-colors">
+                Tell us about your event →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Modal */}
+      {selectedTent && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl relative">
+            <button
+              onClick={() => setSelectedTent(null)}
+              className="absolute top-4 right-4 p-2 text-[#2D2D2D] hover:text-[#1a1a1a]"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="p-8">
+              {formSubmitted ? (
+                <div className="text-center py-8">
+                  <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
+                  <h3 className="font-serif text-2xl font-bold mb-2">You're All Set</h3>
+                  <p className="text-[#2D2D2D]/70 mb-6">
+                    We've received your booking request for the {selectedTent.name} ({selectedTent.size}).
+                    Our team will confirm availability and reach out within 24 hours.
+                  </p>
+                  <Button
+                    onClick={() => setSelectedTent(null)}
+                    className="bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D]"
+                  >
+                    Done
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-6">
+                    <span className="text-xs uppercase tracking-[0.2em] text-[#C4A882] font-medium">Book Now</span>
+                    <h3 className="font-serif text-2xl font-bold mt-1">
+                      {selectedTent.name} — {selectedTent.size}
+                    </h3>
+                    <p className="text-lg font-serif font-bold text-[#C4A882] mt-1">{selectedTent.price}</p>
+                  </div>
+
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="book-name" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Full Name</Label>
+                        <Input id="book-name" name="name" required className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                      </div>
+                      <div>
+                        <Label htmlFor="book-phone" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Phone</Label>
+                        <Input id="book-phone" name="phone" type="tel" required className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="book-email" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Email</Label>
+                      <Input id="book-email" name="email" type="email" required className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                    </div>
+                    <div>
+                      <Label htmlFor="book-date" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Event Date</Label>
+                      <Input id="book-date" name="date" type="date" required className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                    </div>
+                    <div>
+                      <Label htmlFor="book-address" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Delivery Address</Label>
+                      <Input id="book-address" name="address" required placeholder="Street address, city, zip" className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                    </div>
+                    <div>
+                      <Label htmlFor="book-notes" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Notes (optional)</Label>
+                      <Textarea id="book-notes" name="notes" rows={3} placeholder="Any special requests or setup details..." className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3 mt-2"
+                    >
+                      Confirm Booking Request
+                    </Button>
+                    <p className="text-xs text-center text-[#2D2D2D]/50 mt-2">
+                      This is a booking request, not a live payment. We'll confirm availability and follow up.
+                    </p>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </main>
+  );
+}
