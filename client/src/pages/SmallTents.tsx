@@ -8,8 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 interface TentOption {
   id: string;
@@ -59,12 +60,36 @@ const SMALL_TENTS: TentOption[] = [
 export default function SmallTents() {
   const [selectedTent, setSelectedTent] = useState<TentOption | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submitBooking = trpc.forms.submitBooking.useMutation({
+    onSuccess: () => {
+      setFormSubmitted(true);
+      setIsSubmitting(false);
+      toast.success("Booking request submitted! We'll confirm within 24 hours.");
+    },
+    onError: (err) => {
+      toast.error(err.message || "Something went wrong. Please try again or call us directly.");
+      setIsSubmitting(false);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to real email service / form handler before launch
-    setFormSubmitted(true);
-    toast.success("Booking request submitted! We'll confirm within 24 hours.");
+    if (!selectedTent) return;
+    setIsSubmitting(true);
+    const form = new FormData(e.currentTarget);
+    submitBooking.mutate({
+      tentName: selectedTent.name,
+      tentSize: selectedTent.size,
+      tentPrice: selectedTent.price,
+      name: form.get("name") as string,
+      phone: form.get("phone") as string,
+      email: form.get("email") as string,
+      date: form.get("date") as string,
+      address: form.get("address") as string,
+      notes: (form.get("notes") as string) || undefined,
+    });
   };
 
   return (
@@ -113,7 +138,7 @@ export default function SmallTents() {
                   </div>
                   <p className="text-sm text-[#2D2D2D]/70 mb-6">{tent.description}</p>
                   <Button
-                    onClick={() => { setSelectedTent(tent); setFormSubmitted(false); }}
+                    onClick={() => { setSelectedTent(tent); setFormSubmitted(false); setIsSubmitting(false); }}
                     className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3"
                   >
                     Book Now — {tent.price}
@@ -203,8 +228,9 @@ export default function SmallTents() {
                     <Button
                       type="submit"
                       className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3 mt-2"
+                      disabled={isSubmitting}
                     >
-                      Confirm Booking Request
+                      {isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin inline" /> Submitting...</> : "Confirm Booking Request"}
                     </Button>
                     <p className="text-xs text-center text-[#2D2D2D]/50 mt-2">
                       This is a booking request, not a live payment. We'll confirm availability and follow up.

@@ -98,7 +98,7 @@ export default function FAQ() {
             <p className="text-[#2D2D2D]/70 mb-4">We're happy to help. Give us a call or drop us a line.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {/* TODO: Replace with real phone/email before launch */}
-              <a href="tel:+15551234567" className="inline-flex items-center justify-center gap-2 bg-[#1a1a1a] text-[#F5F0E8] px-6 py-3 text-sm uppercase tracking-wider font-medium hover:bg-[#2D2D2D] transition-colors">
+              <a href="tel:+19853172861" className="inline-flex items-center justify-center gap-2 bg-[#1a1a1a] text-[#F5F0E8] px-6 py-3 text-sm uppercase tracking-wider font-medium hover:bg-[#2D2D2D] transition-colors">
                 Call Us
               </a>
               <a href="/contact" className="inline-flex items-center justify-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] px-6 py-3 text-sm uppercase tracking-wider font-medium hover:bg-[#1a1a1a] hover:text-[#F5F0E8] transition-colors">

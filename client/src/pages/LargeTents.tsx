@@ -9,8 +9,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 interface LargeTentOption {
   id: string;
@@ -61,18 +62,43 @@ export default function LargeTents() {
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const [selectedTent, setSelectedTent] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [surfaceType, setSurfaceType] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submitQuote = trpc.forms.submitQuote.useMutation({
+    onSuccess: () => {
+      setFormSubmitted(true);
+      setIsSubmitting(false);
+      toast.success("Quote request submitted! We'll be in touch within 24 hours.");
+    },
+    onError: (err) => {
+      toast.error(err.message || "Something went wrong. Please try again or call us directly.");
+      setIsSubmitting(false);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to real email service / form handler before launch
-    setFormSubmitted(true);
-    toast.success("Quote request submitted! We'll be in touch within 24 hours.");
+    setIsSubmitting(true);
+    const form = new FormData(e.currentTarget);
+    submitQuote.mutate({
+      name: form.get("name") as string,
+      phone: form.get("phone") as string,
+      email: form.get("email") as string,
+      date: form.get("date") as string,
+      guests: form.get("guests") as string,
+      address: form.get("address") as string,
+      tentType: selectedTent || undefined,
+      surfaceType: surfaceType || undefined,
+      details: (form.get("details") as string) || undefined,
+    });
   };
 
   const openQuoteForm = (tentId?: string) => {
     if (tentId) setSelectedTent(tentId);
     setShowQuoteForm(true);
     setFormSubmitted(false);
+    setIsSubmitting(false);
   };
 
   return (
@@ -221,7 +247,7 @@ export default function LargeTents() {
                     </div>
                     <div>
                       <Label className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Surface Type</Label>
-                      <Select>
+                      <Select value={surfaceType} onValueChange={setSurfaceType}>
                         <SelectTrigger className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]">
                           <SelectValue placeholder="What's the ground like?" />
                         </SelectTrigger>
@@ -241,8 +267,9 @@ export default function LargeTents() {
                     <Button
                       type="submit"
                       className="w-full bg-[#C4A882] text-[#1a1a1a] hover:bg-[#b89970] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3 mt-2"
+                      disabled={isSubmitting}
                     >
-                      Submit Quote Request
+                      {isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin inline" /> Submitting...</> : "Submit Quote Request"}
                     </Button>
                   </form>
                 </>

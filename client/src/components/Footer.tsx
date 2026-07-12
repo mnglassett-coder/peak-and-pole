@@ -57,10 +57,9 @@ export default function Footer() {
             <h4 className="text-xs uppercase tracking-[0.15em] text-[#C4A882] font-medium mb-4">Get in Touch</h4>
             <div className="flex flex-col gap-3">
               {/* TODO: Replace with real phone number before launch */}
-              <a href="tel:+15551234567" className="flex items-center gap-2 text-sm text-[#F5F0E8]/80 hover:text-[#C4A882] transition-colors">
-                <Phone className="w-4 h-4" /> (555) 123-4567
+              <a href="tel:+19853172861" className="flex items-center gap-2 text-sm text-[#F5F0E8]/80 hover:text-[#C4A882] transition-colors">
+                <Phone className="w-4 h-4" /> (985) 317-2861
               </a>
-              {/* TODO: Replace with real email before launch */}
               <a href="mailto:info@peakandpole.com" className="flex items-center gap-2 text-sm text-[#F5F0E8]/80 hover:text-[#C4A882] transition-colors">
                 <Mail className="w-4 h-4" /> info@peakandpole.com
               </a>

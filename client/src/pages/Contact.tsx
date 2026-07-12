@@ -8,17 +8,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Phone, Mail, MapPin, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { trpc } from "@/lib/trpc";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submitContact = trpc.forms.submitContact.useMutation({
+    onSuccess: () => {
+      setSubmitted(true);
+      setIsSubmitting(false);
+      toast.success("Message sent! We'll get back to you soon.");
+    },
+    onError: (err) => {
+      toast.error(err.message || "Something went wrong. Please try again or call us directly.");
+      setIsSubmitting(false);
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: Connect to real email service / form handler before launch
-    setSubmitted(true);
-    toast.success("Message sent! We'll get back to you soon.");
+    setIsSubmitting(true);
+    const form = new FormData(e.currentTarget);
+    submitContact.mutate({
+      name: form.get("name") as string,
+      phone: (form.get("phone") as string) || undefined,
+      email: form.get("email") as string,
+      subject: form.get("subject") as string,
+      message: form.get("message") as string,
+    });
   };
 
   return (
@@ -55,13 +75,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-xs uppercase tracking-wider text-[#2D2D2D]/60 font-medium mb-1">Phone</h4>
-                    <a href="tel:+15551234567" className="text-lg font-medium text-[#1a1a1a] hover:text-[#C4A882] transition-colors">
-                      (555) 123-4567
+                    <a href="tel:+19853172861" className="text-lg font-medium text-[#1a1a1a] hover:text-[#C4A882] transition-colors">
+                      (985) 317-2861
                     </a>
                   </div>
                 </div>
 
-                {/* TODO: Replace with real email before launch */}
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-[#F5F0E8] flex items-center justify-center flex-shrink-0">
                     <Mail className="w-5 h-5 text-[#C4A882]" />
@@ -107,7 +126,7 @@ export default function Contact() {
                       Thanks for reaching out. We'll get back to you within 24 hours.
                     </p>
                     <Button
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => { setSubmitted(false); setIsSubmitting(false); }}
                       className="bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D]"
                     >
                       Send Another Message
@@ -139,11 +158,12 @@ export default function Contact() {
                         <Label htmlFor="contact-message" className="text-xs uppercase tracking-wider text-[#2D2D2D]/70">Message</Label>
                         <Textarea id="contact-message" name="message" rows={5} required placeholder="Tell us what you need..." className="mt-1 border-[#C4A882]/30 focus:border-[#C4A882]" />
                       </div>
-                      <Button
-                        type="submit"
-                        className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3"
+                     <Button
+                       type="submit"
+                       className="w-full bg-[#1a1a1a] text-[#F5F0E8] hover:bg-[#2D2D2D] active:scale-[0.97] transition-all duration-160 uppercase tracking-wider text-sm font-medium py-3"
+                        disabled={isSubmitting}
                       >
-                        Send Message
+                        {isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin inline" /> Sending...</> : "Send Message"}
                       </Button>
                     </form>
                   </>

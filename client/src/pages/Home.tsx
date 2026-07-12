@@ -1,3 +1,4 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowRight, MapPin } from "lucide-react";
@@ -8,6 +9,13 @@ import { ArrowRight, MapPin } from "lucide-react";
  * Signature elements: diagonal peak lines, pole markers, angled dividers, offset compositions
  */
 export default function Home() {
+  // The useAuth hook provides authentication state.
+  // To implement login/logout, call logout(), or start login from an event
+  // handler: onClick={() => startLogin()} (imported from "@/const"). Never call
+  // startLogin() during render (no href={startLogin()}) — it mints a one-time
+  // nonce cookie and must run only at the moment of navigation.
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   return (
     <main>
       {/* ===== HERO SECTION ===== */}
@@ -31,9 +39,9 @@ export default function Home() {
               Louisiana Northshore
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
-              Your backyard.<br />
+              Your event.<br />
               Our structure.<br />
-              <span className="text-[#C4A882]">Their jaws on the floor.</span>
+              <span className="text-[#C4A882]">Guests never forget.</span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed">
               Premium tent rentals for events that deserve more than a tarp and some hope. Serving Covington, Mandeville, Madisonville, Hammond & Ponchatoula.
@@ -139,6 +147,35 @@ export default function Home() {
       <div className="relative h-20 bg-[#FDFBF7]">
         <div className="absolute inset-0 bg-[#F5F0E8]" style={{ clipPath: "polygon(0 0, 100% 60%, 100% 100%, 0 100%)" }} />
       </div>
+
+      {/* ===== HOW IT WORKS ===== */}
+      <section className="bg-[#F5F0E8] py-20 md:py-24 -mt-[1px]">
+        <div className="container">
+          <div className="text-center mb-14">
+            <div className="w-[1px] h-8 bg-[#C4A882] mx-auto mb-4" />
+            <span className="text-xs uppercase tracking-[0.25em] text-[#C4A882] font-semibold">Simple Process</span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">How It Works</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {[
+              { step: "01", title: "Book", desc: "Pick your tent size and lock in your event date online — or request a custom quote for larger setups." },
+              { step: "02", title: "We Deliver", desc: "Our crew shows up on time with everything needed. We handle all the heavy lifting and setup." },
+              { step: "03", title: "Your Event", desc: "Enjoy your event under solid cover. Rain or shine, your guests stay comfortable." },
+              { step: "04", title: "We Tear Down", desc: "When it's over, we come back and break it all down. You don't touch a pole." },
+            ].map((item, i) => (
+              <div key={i} className="text-center relative">
+                <span className="block font-serif text-4xl font-bold text-[#C4A882]/30 mb-2">{item.step}</span>
+                <h4 className="font-serif text-xl font-bold text-[#1a1a1a] mb-2">{item.title}</h4>
+                <p className="text-sm text-[#2D2D2D]/70 leading-relaxed">{item.desc}</p>
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-6 -right-4 w-8 h-[1px] bg-[#C4A882]/40" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ===== TRUST SIGNALS ===== */}
       <section className="bg-[#F5F0E8] py-20 md:py-24 -mt-[1px]">

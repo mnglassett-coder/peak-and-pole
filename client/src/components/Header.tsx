@@ -77,11 +77,11 @@ export default function Header() {
           ))}
           {/* TODO: Replace with real phone number before launch */}
           <a
-            href="tel:+15551234567"
+            href="tel:+19853172861"
             className="flex items-center gap-2 text-sm font-medium text-[#1a1a1a] hover:text-[#C4A882] transition-colors"
           >
             <Phone className="w-4 h-4" />
-            <span>(555) 123-4567</span>
+            <span>(985) 317-2861</span>
           </a>
         </nav>
 
@@ -113,11 +113,11 @@ export default function Header() {
               </Link>
             ))}
             <a
-              href="tel:+15551234567"
+              href="tel:+19853172861"
               className="flex items-center gap-2 text-base font-medium text-[#1a1a1a] pt-2"
             >
               <Phone className="w-5 h-5 text-[#C4A882]" />
-              <span>(555) 123-4567</span>
+              <span>(985) 317-2861</span>
             </a>
           </nav>
         </div>
