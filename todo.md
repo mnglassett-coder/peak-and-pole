@@ -15,3 +15,9 @@
 - [x] Display info@peakandpole.com as public contact email (not itsthejumpoff.com)
 - [x] Rewrite hero headline — clearer payoff line ("Guests never forget.")
 - [x] Add "How It Works" section to homepage (4 steps: Book → Deliver → Event → Teardown)
+- [x] Swap in real Peak & Pole logo (header, footer)
+- [x] Generate distinct tent photos: pop-up canopy, frame tent, structure tent
+- [x] Update Small Tents pricing: 10x10 $50, 10x20 $140, 15x15 $260 (frame), 20x20 $415 (frame)
+- [x] Update Small Tents to show correct tent types (pop-ups and frame tents with matching photos)
+- [x] Set up Resend email integration (ready — needs API key from owner to activate)
+- [x] Keep Structure Tent listings on Large Tents page (40x60, 40x80) — confirmed, no change

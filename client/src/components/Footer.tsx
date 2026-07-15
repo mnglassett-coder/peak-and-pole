@@ -12,16 +12,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="mb-4">
               <img
-                src="/manus-storage/logo-icon_135ef59a.png"
-                alt="Peak & Pole"
-                className="h-8 w-8 invert brightness-200"
+                src="/manus-storage/peak-and-pole-logo_03522fbf.png"
+                alt="Peak & Pole Tent Co."
+                className="h-14 w-auto invert brightness-200"
               />
-              <div>
-                <span className="font-serif text-lg font-bold text-white">Peak & Pole</span>
-                <span className="block text-[10px] uppercase tracking-[0.2em] text-[#C4A882]">Tent Co.</span>
-              </div>
             </div>
             <p className="text-sm text-[#F5F0E8]/70 leading-relaxed max-w-xs">
               Premium tent rentals for the Louisiana Northshore. From backyard celebrations to corporate events — we bring the structure, you bring the party.

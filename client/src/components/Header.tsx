@@ -46,18 +46,10 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <img
-            src="/manus-storage/logo-icon_135ef59a.png"
-            alt="Peak & Pole"
-            className="h-9 w-9 md:h-10 md:w-10"
+            src="/manus-storage/peak-and-pole-logo_03522fbf.png"
+            alt="Peak & Pole Tent Co."
+            className="h-12 md:h-14 w-auto"
           />
-          <div className="flex flex-col">
-            <span className="font-serif text-lg md:text-xl font-bold tracking-tight text-[#1a1a1a] leading-tight">
-              Peak & Pole
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#C4A882] font-medium leading-tight hidden sm:block">
-              Tent Co.
-            </span>
-          </div>
         </Link>
 
         {/* Desktop Nav */}

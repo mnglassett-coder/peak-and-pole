@@ -21,13 +21,12 @@ interface TentOption {
   image: string;
 }
 
-/* TODO: Replace placeholder pricing and images with real inventory before launch */
 const SMALL_TENTS: TentOption[] = [
   {
     id: "popup-10x10",
     name: "Pop-Up Canopy",
     size: "10' × 10'",
-    price: "$75",
+    price: "$50",
     description: "Perfect for small gatherings, vendor booths, or backyard shade. Quick setup, clean look.",
     image: "/manus-storage/small-tent-popup_dea8a924.jpg",
   },
@@ -35,7 +34,7 @@ const SMALL_TENTS: TentOption[] = [
     id: "popup-10x20",
     name: "Pop-Up Canopy",
     size: "10' × 20'",
-    price: "$125",
+    price: "$140",
     description: "Double the coverage for larger parties, tailgates, or outdoor dining areas.",
     image: "/manus-storage/small-tent-popup_dea8a924.jpg",
   },
@@ -43,17 +42,17 @@ const SMALL_TENTS: TentOption[] = [
     id: "frame-15x15",
     name: "Frame Tent",
     size: "15' × 15'",
-    price: "$200",
-    description: "A step up in structure. No center pole, clean interior space for seated dinners or displays.",
-    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+    price: "$260",
+    description: "A step up in structure. No center pole, clean interior space for seated dinners or displays. Flat roofline with aluminum frame.",
+    image: "/manus-storage/frame-tent-photo_e3cde3b5.jpg",
   },
   {
     id: "frame-20x20",
     name: "Frame Tent",
     size: "20' × 20'",
-    price: "$300",
-    description: "Our largest 'book instantly' option. Fits ~40 guests seated or 60 standing comfortably.",
-    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+    price: "$415",
+    description: "Our largest 'book instantly' option. Flat roofline, no center pole, fits ~40 guests seated or 60 standing comfortably.",
+    image: "/manus-storage/frame-tent-photo_e3cde3b5.jpg",
   },
 ];
 

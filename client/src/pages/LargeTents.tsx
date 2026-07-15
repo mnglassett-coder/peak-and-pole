@@ -22,7 +22,6 @@ interface LargeTentOption {
   image: string;
 }
 
-/* TODO: Replace placeholder images and descriptions with real inventory before launch */
 const LARGE_TENTS: LargeTentOption[] = [
   {
     id: "frame-30x30",
@@ -30,7 +29,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "30' × 30'",
     capacity: "Up to 90 guests",
     description: "No center poles — open floor plan ideal for seated dinners, dance floors, or buffet layouts.",
-    image: "/manus-storage/large-tent-structure_0357d2a3.jpg",
+    image: "/manus-storage/frame-tent-photo_e3cde3b5.jpg",
   },
   {
     id: "frame-30x60",
@@ -38,7 +37,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "30' × 60'",
     capacity: "Up to 180 guests",
     description: "Our most popular large tent. Versatile layout for weddings, corporate events, and community gatherings.",
-    image: "/manus-storage/large-tent-structure_0357d2a3.jpg",
+    image: "/manus-storage/frame-tent-photo_e3cde3b5.jpg",
   },
   {
     id: "structure-40x60",
@@ -46,7 +45,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "40' × 60'",
     capacity: "Up to 240 guests",
     description: "Engineered for scale. High ceilings, dramatic peaks, and room for full event production.",
-    image: "/manus-storage/large-tent-structure_0357d2a3.jpg",
+    image: "/manus-storage/structure-tent-photo_0ffb7259.jpg",
   },
   {
     id: "structure-40x80",
@@ -54,7 +53,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "40' × 80'",
     capacity: "Up to 320 guests",
     description: "Our largest offering. Built for major events — galas, festivals, and large corporate functions.",
-    image: "/manus-storage/large-tent-structure_0357d2a3.jpg",
+    image: "/manus-storage/structure-tent-photo_0ffb7259.jpg",
   },
 ];
 
