@@ -21,3 +21,5 @@
 - [x] Update Small Tents to show correct tent types (pop-ups and frame tents with matching photos)
 - [x] Set up Resend email integration (ready — needs API key from owner to activate)
 - [x] Keep Structure Tent listings on Large Tents page (40x60, 40x80) — confirmed, no change
+- [x] Fix frame tent photo — needs hip-roof/raised center ridge structure, not flat top
+- [x] Fix Small Tents lineup: remove 10x20 pop-up and 15x15 frame, replace with 20x20 ($415), 20x30 ($635), 20x40 ($855) frame tents
