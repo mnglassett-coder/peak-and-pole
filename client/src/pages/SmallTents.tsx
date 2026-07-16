@@ -28,7 +28,7 @@ const SMALL_TENTS: TentOption[] = [
     size: "10' × 10'",
     price: "$50",
     description: "Perfect for small gatherings, vendor booths, or backyard shade. Quick setup, clean look.",
-    image: "/manus-storage/small-tent-popup_dea8a924.jpg",
+    image: "/manus-storage/popup-10x10-square_fe44471f.jpg",
   },
   {
     id: "frame-20x20",
@@ -36,7 +36,7 @@ const SMALL_TENTS: TentOption[] = [
     size: "20' × 20'",
     price: "$415",
     description: "Raised center ridge with canopy sloping to the edges. No center pole, clean interior space. Fits ~40 guests seated or 60 standing.",
-    image: "/manus-storage/frame-tent-accurate_3d462a12.jpg",
+    image: "/manus-storage/frame-20x20-square_61901eb7.jpg",
   },
   {
     id: "frame-20x30",
@@ -44,7 +44,7 @@ const SMALL_TENTS: TentOption[] = [
     size: "20' × 30'",
     price: "$635",
     description: "Same raised-ridge frame structure in a larger footprint. Great for seated dinners, receptions, or corporate events up to 60 guests.",
-    image: "/manus-storage/frame-tent-accurate_3d462a12.jpg",
+    image: "/manus-storage/frame-20x30-rect_9d4cbbb7.jpg",
   },
   {
     id: "frame-20x40",
@@ -52,7 +52,7 @@ const SMALL_TENTS: TentOption[] = [
     size: "20' × 40'",
     price: "$855",
     description: "Our largest instant-book frame tent. Raised center ridge, no center pole, room for 80+ guests seated or 120 standing.",
-    image: "/manus-storage/frame-tent-accurate_3d462a12.jpg",
+    image: "/manus-storage/frame-20x40-long_1775b69c.jpg",
   },
 ];
 

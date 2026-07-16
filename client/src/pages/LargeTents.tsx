@@ -29,7 +29,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "30' × 30'",
     capacity: "Up to 90 guests",
     description: "Raised center ridge, no center poles — open floor plan ideal for seated dinners, dance floors, or buffet layouts.",
-    image: "/manus-storage/frame-tent-accurate_3d462a12.jpg",
+    image: "/manus-storage/frame-20x20-square_61901eb7.jpg",
   },
   {
     id: "frame-30x60",
@@ -37,7 +37,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "30' × 60'",
     capacity: "Up to 180 guests",
     description: "Our most popular large tent. Raised ridge structure, versatile layout for weddings, corporate events, and community gatherings.",
-    image: "/manus-storage/frame-tent-accurate_3d462a12.jpg",
+    image: "/manus-storage/frame-20x40-long_1775b69c.jpg",
   },
   {
     id: "structure-40x60",

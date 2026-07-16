@@ -23,3 +23,5 @@
 - [x] Keep Structure Tent listings on Large Tents page (40x60, 40x80) — confirmed, no change
 - [x] Fix frame tent photo — needs hip-roof/raised center ridge structure, not flat top
 - [x] Fix Small Tents lineup: remove 10x20 pop-up and 15x15 frame, replace with 20x20 ($415), 20x30 ($635), 20x40 ($855) frame tents
+- [x] Fix 10x10 pop-up photo — currently looks rectangular (10x20), needs to be SQUARE with same nice home background
+- [x] Fix frame tent photos — need distinct proportions: 20x20 (square), 20x30 (moderately rectangular), 20x40 (very elongated)
