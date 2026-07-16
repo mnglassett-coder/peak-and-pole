@@ -52,7 +52,7 @@ const SMALL_TENTS: TentOption[] = [
     size: "20' × 40'",
     price: "$855",
     description: "Our largest instant-book frame tent. Raised center ridge, no center pole, room for 80+ guests seated or 120 standing.",
-    image: "/manus-storage/frame-20x40-long_1775b69c.jpg",
+    image: "/manus-storage/frame-20x40-correct_8a944b4e.jpg",
   },
 ];
 

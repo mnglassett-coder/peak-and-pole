@@ -37,7 +37,7 @@ const LARGE_TENTS: LargeTentOption[] = [
     size: "30' × 60'",
     capacity: "Up to 180 guests",
     description: "Our most popular large tent. Raised ridge structure, versatile layout for weddings, corporate events, and community gatherings.",
-    image: "/manus-storage/frame-20x40-long_1775b69c.jpg",
+    image: "/manus-storage/frame-20x40-correct_8a944b4e.jpg",
   },
   {
     id: "structure-40x60",
